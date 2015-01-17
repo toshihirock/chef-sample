@@ -1,0 +1,16 @@
+{
+  "run_list": [
+    "recipe[yum]",
+    "recipe[user]",
+    "recipe[sudo]"
+  ],
+  "automatic": {
+    "ipaddress": "sound"
+  },
+  "authorization": {
+    "sudo": {
+      "users": ["toshi", "abc", "vagrant"],
+      "passwordless": "true"
+    }
+  }
+}
