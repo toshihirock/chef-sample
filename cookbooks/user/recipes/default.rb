@@ -21,6 +21,23 @@ yum_repository 'epel' do
   action :create
 end
 
-package "python" do
-  action :install
+%w{python s3cmd ntpd}.each do |name|
+  package name do
+    action :install
+  end
+end
+
+# set Japan time
+file "/etc/localtime" do
+  content IO.read("/usr/share/zoneinfo/Japan"
+  action :create
+end
+
+cookbook_file "clock" do
+  path /etc/sysconfig/clock
+  action :create
+end
+
+execute "get japan time"
+  command "ntpdate" "ntp.nict.jp"
 end
